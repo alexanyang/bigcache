@@ -25,11 +25,11 @@ func Load(path string) {
 			continue
 		}
 
-		//忽略掉注释.
-		if strings.HasPrefix(line, "#") {
+		//忽略掉注释和空行.
+		if strings.HasPrefix(line, "#") || line[0] =='\r' {
 			continue
 		}
-
+		line = strings.Trim(line,"\r")
 		//按照=来拆分配置.
 		arr := strings.Split(line, "=")
 		key := strings.Trim(arr[0], " ")
